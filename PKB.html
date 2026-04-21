@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>PKB - KSP CU SMG</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230DB27A'/%3E%3Cpath d='M18 21h28a4 4 0 0 1 4 4v14a4 4 0 0 1-4 4H18a4 4 0 0 1-4-4V25a4 4 0 0 1 4-4z' fill='white' opacity='.96'/%3E%3Ccircle cx='32' cy='32' r='8' fill='%230DB27A'/%3E%3Cpath d='M32 27.5v9M35.5 29.5c0-1.1-1.2-2-3-2s-3 .9-3 2 1.1 1.7 3 2 3 1 3 2.1-1.2 2.1-3 2.1-3-.9-3-2.1' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body class="pkb-page accent-green">
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 7.5A2.5 2.5 0 0 1 6.5 5h11A2.5 2.5 0 0 1 20 7.5v9A2.5 2.5 0 0 1 17.5 19h-11A2.5 2.5 0 0 1 4 16.5v-9zm2.5-.5a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-11z"/><path d="M12 8.25a.75.75 0 0 1 .75.75v.35c1.22.2 2.25.97 2.25 2.15a.75.75 0 0 1-1.5 0c0-.33-.47-.75-1.5-.75s-1.5.42-1.5.75c0 .43.34.62 1.82.94 1.37.3 2.68.8 2.68 2.31 0 1.18-1.03 1.95-2.25 2.15V17a.75.75 0 0 1-1.5 0v-.35C10.03 16.45 9 15.68 9 14.5a.75.75 0 0 1 1.5 0c0 .33.47.75 1.5.75s1.5-.42 1.5-.75c0-.43-.34-.62-1.82-.94C10.31 13.26 9 12.76 9 11.25c0-1.18 1.03-1.95 2.25-2.15V9a.75.75 0 0 1 .75-.75z"/></svg>
+    </div>
+    <div>
+      <div class="nav-title">Nomor PKB</div>
+      <div class="nav-sub">KSP CU SEMARONG</div>
+    </div>
+  </div>
+  <div class="nav-actions">
+    <button class="nav-pill" id="historyBtn" onclick="openHistory()" style="display:none">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 3a9 9 0 1 0 8.95 10h-2.02A7 7 0 1 1 13 5v3l4-4-4-4v3zm-1 5h2v5.2l3.2 1.9-1 1.73L12 14.2V8z"/></svg>
+      Riwayat
+    </button>
+    <a class="nav-pill" href="index.html">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM9 13h6v1.5H9V13zm0 3h6v1.5H9V16zm5-6l4 3-4 3V10z"/></svg>
+      Surat Keluar
+    </a>
+    <button class="nav-pill" id="adminBtn" onclick="openAdminLogin()">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-5.33 0-8 2.68-8 4v1h16v-1c0-1.32-2.67-4-8-4z"/></svg>
+      Admin
+    </button>
+    <button class="nav-pill danger" id="adminLogoutBtn" onclick="logoutAdmin()" style="display:none">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5-5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg>
+      Logout
+    </button>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div class="app">
+<div class="main">
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-ico blue">
+        <svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-7 14H7v-2h5v2zm5-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+      </div>
+      <div>
+        <div class="stat-num" id="s-bln">0</div>
+        <div class="stat-lbl">Bulan Ini</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-ico green">
+        <svg viewBox="0 0 24 24"><path d="M20 6h-3V4a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2zM9 4h6v2H9V4zm11 15H4V8h16v11z"/></svg>
+      </div>
+      <div>
+        <div class="stat-num" id="s-thn">0</div>
+        <div class="stat-lbl">Tahun Ini</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sec-label">Nomor PKB Otomatis</div>
+    <div class="preview-box incomplete" id="previewBox">
+      <div class="preview-ico">
+        <svg viewBox="0 0 24 24"><path d="M20 6h-3V4a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2zm-8 11l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L21 8l-9 9z"/></svg>
+      </div>
+      <div>
+        <div class="preview-num" id="pv">- Lengkapi form di bawah -</div>
+      </div>
+    </div>
+    <div class="preview-hint warn" id="pvh">Pilih tanggal agar preview nomor PKB muncul otomatis.</div>
+
+    <div class="divider"></div>
+    <div class="sec-label">Entry PKB</div>
+
+    <div class="form-grid">
+      <div class="fg">
+        <label for="ft">Tanggal</label>
+        <input class="inp" type="date" id="ft" oninput="upv()"/>
+      </div>
+      <div class="fg">
+        <label for="fb">Pembuat</label>
+        <input class="inp" type="text" id="fb" placeholder="Nama pembuat PKB" oninput="sanitizeNameInput('fb');upv()"/>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="simpan()">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7l-4-4zm-5 16a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm3-10H5V5h10v4z"/></svg>
+        Simpan PKB
+      </button>
+    </div>
+  </div>
+
+  <div class="list-card">
+    <div class="list-head">
+      <div class="sec-label" style="margin:0">Daftar Nomor PKB</div>
+      <div class="list-tools" id="backupTools" style="display:none">
+        <button class="btn btn-reset-record" type="button" onclick="resetNomorManual()">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.65 6.35A7.95 7.95 0 0 0 12 4V1L7 6l5 5V7a5 5 0 1 1-4.9 6H5.08A7 7 0 1 0 17.65 6.35z"/></svg>
+          Reset
+        </button>
+        <div class="json-menu" id="jsonMenu">
+          <button class="btn" type="button" onclick="toggleJsonMenu(event,'jsonMenu')">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 7H6v10h2v2H4V5h4v2zm8 0h2v10h-2v2h4V5h-4v2zm-5.3 2.4L9.3 15h2.1l1.4-5.6h-2.1zm2.6 0L14.7 15h2.1l-1.4-5.6h-2.1z"/></svg>
+            JSON
+          </button>
+          <div class="json-menu-list">
+            <button class="json-menu-item" type="button" onclick="jsonActionBackup('jsonMenu')">Backup</button>
+            <button class="json-menu-item" type="button" onclick="jsonActionUpload('jsonMenu')">Upload</button>
+          </div>
+        </div>
+        <button class="btn" type="button" onclick="openExportModal()">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 2H8c-1.1 0-2 .9-2 2v4H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V4c0-1.1-.9-2-2-2zM8 4h11v4H8V4zm11 16H5V10h14v10zM8.8 12h1.9l1.3 2.1L13.3 12h1.9l-2.1 3 2.2 3h-2l-1.4-2.2L10.5 18h-2l2.2-3-1.9-3z"/></svg>
+          Export Excel
+        </button>
+        <input type="file" id="restoreFile" accept="application/json,.json" style="display:none" onchange="handleRestoreFile(event)"/>
+      </div>
+    </div>
+    <div class="search-wrap">
+      <div class="search-box">
+        <span class="search-ico">
+          <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        </span>
+        <input type="text" class="search-inp" id="fs" placeholder="Cari nomor PKB, tanggal, atau pembuat..." oninput="render()"/>
+      </div>
+    </div>
+    <div class="tw">
+      <table>
+        <colgroup>
+          <col style="width:60px">
+          <col style="width:120px">
+          <col style="width:240px">
+          <col>
+          <col data-col="aksi-col" style="width:84px">
+        </colgroup>
+        <thead>
+          <tr>
+            <th class="tc">No.</th>
+            <th>Tanggal</th>
+            <th>Nomor PKB</th>
+            <th>Pembuat</th>
+            <th data-col="aksi" class="tc">Aksi</th>
+          </tr>
+        </thead>
+        <tbody id="tb">
+          <tr><td colspan="5">
+            <div class="empty-row">
+              <div class="empty-ico"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM9 13h6v1.5H9V13zm0 3h6v1.5H9V16zm0-6h3v1.5H9V10z"/></svg></div>
+              Belum ada PKB tercatat
+            </div>
+          </td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<div class="copy">&copy; YBX</div>
+
+<div class="overlay" id="modal" onclick="if(event.target===this)closeM()">
+  <div class="mbox">
+    <div class="mico red">
+      <svg viewBox="0 0 24 24"><path d="M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+    </div>
+    <div class="mtitle">Hapus PKB?</div>
+    <div class="mbody">PKB dengan nomor <strong id="mn" style="color:var(--red)"></strong> akan dihapus secara permanen dan tidak dapat dikembalikan.</div>
+    <div class="mfooter">
+      <button class="btn" onclick="closeM()">Batal</button>
+      <button class="btn btn-danger" onclick="doHapus()">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+        Ya, Hapus
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="adminModal" onclick="if(event.target===this)closeAdminLogin()">
+  <div class="mbox">
+    <div class="mico blue">
+      <svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-5.33 0-8 2.68-8 4v1h16v-1c0-1.32-2.67-4-8-4z"/></svg>
+    </div>
+    <div class="mtitle">Login Admin</div>
+    <div class="modal-hint">Admin cloud untuk halaman PKB. Login menggunakan akun email admin yang terdaftar di cloud.</div>
+    <div class="fg" style="margin-bottom:14px">
+      <label for="adminName">Email Admin</label>
+      <input class="inp" type="email" id="adminName" placeholder="admin@domain.com" onkeydown="if(event.key==='Enter')loginAdmin()"/>
+    </div>
+    <div class="fg" style="margin-bottom:18px">
+      <label for="adminPass">Password Admin</label>
+      <input class="inp" type="password" id="adminPass" placeholder="Masukkan password admin" onkeydown="if(event.key==='Enter')loginAdmin()"/>
+    </div>
+    <div class="mfooter">
+      <button class="btn" onclick="closeAdminLogin()">Batal</button>
+      <button class="btn btn-primary" onclick="loginAdmin()">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11 7L9.6 8.4l2.6 2.6H2v2h10.2l-2.6 2.6L11 17l5-5-5-5zm9 12h-8v2h8a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-8v2h8v14z"/></svg>
+        Login
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="editModal" onclick="if(event.target===this)closeEdit()">
+  <div class="mbox">
+    <div class="mtitle">Edit PKB</div>
+    <div class="modal-hint">Mode admin aktif. Anda dapat mengubah nomor PKB, tanggal, dan pembuat.</div>
+    <div class="edit-grid">
+      <div class="fg full"><label for="efn">Nomor PKB</label><input class="inp" type="text" id="efn" placeholder="0001/99/III/2026"/></div>
+      <div class="fg"><label for="eft">Tanggal</label><input class="inp" type="date" id="eft"/></div>
+      <div class="fg"><label for="efb">Pembuat</label><input class="inp" type="text" id="efb" placeholder="Nama pembuat PKB" oninput="sanitizeNameInput('efb')"/></div>
+    </div>
+    <div class="mfooter" style="margin-top:18px">
+      <button class="btn" onclick="closeEdit()">Batal</button>
+      <button class="btn btn-primary" onclick="saveEdit()">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7l-4-4zm-5 16a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm3-10H5V5h10v4z"/></svg>
+        Simpan Perubahan
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="resetNomorModal" onclick="if(event.target===this)closeResetNomorModal()">
+  <div class="mbox">
+    <div class="mico red">
+      <svg viewBox="0 0 24 24"><path d="M17.65 6.35A7.95 7.95 0 0 0 12 4V1L7 6l5 5V7a5 5 0 1 1-4.9 6H5.08A7 7 0 1 0 17.65 6.35z"/></svg>
+    </div>
+    <div class="mtitle">Reset Nomor</div>
+    <div class="modal-hint" id="resetNomorHint">Atur nomor awal untuk PKB berikutnya. Semua data PKB yang sudah ada akan dihapus.</div>
+    <div class="fg">
+      <label for="resetStartNumber">Nomor Start Awal</label>
+      <input class="inp" type="number" id="resetStartNumber" min="1" max="9999" step="1" placeholder="Contoh: 1" onkeydown="if(event.key==='Enter')applyResetNomor()"/>
+    </div>
+    <div class="fg" style="margin-top:10px">
+      <label for="resetConfirm" style="display:flex;align-items:center;gap:8px;cursor:pointer">
+        <input type="checkbox" id="resetConfirm"/>
+        Saya yakin
+      </label>
+    </div>
+    <div class="mfooter" style="margin-top:18px">
+      <button class="btn" onclick="closeResetNomorModal()">Batal</button>
+      <button class="btn btn-reset-record" onclick="applyResetNomor()">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.65 6.35A7.95 7.95 0 0 0 12 4V1L7 6l5 5V7a5 5 0 1 1-4.9 6H5.08A7 7 0 1 0 17.65 6.35z"/></svg>
+        Reset
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="historyModal" onclick="if(event.target===this)closeHistory()">
+  <div class="mbox mbox-wide">
+    <div class="mico blue">
+      <svg viewBox="0 0 24 24"><path d="M13 3a9 9 0 1 0 8.95 10h-2.02A7 7 0 1 1 13 5v3l4-4-4-4v3zm-1 5h2v5.2l3.2 1.9-1 1.73L12 14.2V8z"/></svg>
+    </div>
+    <div class="mtitle">Riwayat Aktivitas</div>
+    <div class="modal-hint">Riwayat edit hanya terlihat saat mode admin aktif. Data menampilkan siapa mengedit, kapan diedit, serta perubahan data lama dan data baru.</div>
+    <div class="history-list" id="historyList">
+      <div class="empty-row">Belum ada riwayat aktivitas.</div>
+    </div>
+    <div class="mfooter" style="margin-top:18px">
+      <button class="btn" onclick="closeHistory()">Tutup</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="exportModal" onclick="if(event.target===this)closeExportModal()">
+  <div class="mbox">
+    <div class="modal-head-inline">
+      <div class="mico blue">
+        <svg viewBox="0 0 24 24"><path d="M19 2H8c-1.1 0-2 .9-2 2v4H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V4c0-1.1-.9-2-2-2zM8 4h11v4H8V4zm11 16H5V10h14v10zM8.8 12h1.9l1.3 2.1L13.3 12h1.9l-2.1 3 2.2 3h-2l-1.4-2.2L10.5 18h-2l2.2-3-1.9-3z"/></svg>
+      </div>
+      <div class="mtitle">Export Excel</div>
+    </div>
+    <div class="fg">
+      <label for="exportMonth">Periode Data</label>
+      <select class="inp" id="exportMonth"></select>
+    </div>
+    <div class="mfooter" style="margin-top:18px">
+      <button class="btn" onclick="closeExportModal()">Batal</button>
+      <button class="btn btn-primary" onclick="downloadExcel()">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 2H8c-1.1 0-2 .9-2 2v4H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V4c0-1.1-.9-2-2-2zM8 4h11v4H8V4zm11 16H5V10h14v10zM8.8 12h1.9l1.3 2.1L13.3 12h1.9l-2.1 3 2.2 3h-2l-1.4-2.2L10.5 18h-2l2.2-3-1.9-3z"/></svg>
+        Download
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">
+  <svg id="toast-ico" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm-1 15v-6h2v6h-2zm0-8V7h2v2h-2z"/></svg>
+  <span id="toast-msg"></span>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+<script src="cloud-config.js"></script>
+<script src="cloud.js"></script>
+<script src="pkb.js"></script>
+</body>
+</html>
