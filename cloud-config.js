@@ -8,6 +8,8 @@ window.CLOUD_CONFIG = {
     appId: "1:772329305366:web:7b4ff6b6e6b8f9e1998c37"
   },
   adminEmails: [
-    "ybusax@gmail.com"
+    "ybusax@gmail.com",
+    "dina@gmail.com",
+    "meisinta@gmail.com"
   ]
 };
