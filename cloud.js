@@ -95,6 +95,30 @@
     return ready ? auth.currentUser : null;
   }
 
+  function getCleanPageUrl(target) {
+    var page = String(target || "index").replace(/^\/+|\/+$/g, "").replace(/\.html$/i, "");
+    var path = String(global.location.pathname || "/").replace(/\/+$/g, "");
+    var base = path
+      .replace(/\/pkb\/index(?:\.html)?$/i, "")
+      .replace(/\/(?:index|pkb)(?:\.html)?$/i, "");
+    if (page.toLowerCase() === "index") {
+      return (base || "") + "/";
+    }
+    if (page.toLowerCase() === "pkb") {
+      return (base || "") + "/PKB/";
+    }
+    return (base || "") + "/" + page;
+  }
+
+  function navigateCleanPage(target, event) {
+    if (event && typeof event.preventDefault === "function") {
+      event.preventDefault();
+    }
+    global.location.href = getCleanPageUrl(target);
+  }
+
+  global.navigateCleanPage = navigateCleanPage;
+
   global.cloudStore = {
     isReady: function () { return ready; },
     getSetupError: function () { return setupError; },
